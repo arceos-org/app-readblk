@@ -1,6 +1,6 @@
 [package]
 name = "arceos-readblk"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 authors = ["Lei Shi <shi_lei@massclouds.com>", "Yu Chen <yuchen@tsinghua.edu.cn>"]
 description = "A block device reader crate (from crates.io) for ArceOS demonstrating VirtIO-blk driver discovery and disk I/O"
