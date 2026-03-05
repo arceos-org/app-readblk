@@ -6,7 +6,10 @@ use std::process::{self, Command};
 
 /// ArceOS readblk multi-architecture build & run tool
 #[derive(Parser)]
-#[command(name = "xtask", about = "Build and run arceos-readblk on different architectures")]
+#[command(
+    name = "xtask",
+    about = "Build and run arceos-readblk on different architectures"
+)]
 struct Cli {
     #[command(subcommand)]
     command: Cmd,
@@ -120,7 +123,11 @@ fn create_disk_image(path: &Path) {
     boot_sector[12] = 0x02;
 
     let mut f = File::create(path).unwrap_or_else(|e| {
-        eprintln!("Error: failed to create disk image {}: {}", path.display(), e);
+        eprintln!(
+            "Error: failed to create disk image {}: {}",
+            path.display(),
+            e
+        );
         process::exit(1);
     });
     f.write_all(&boot_sector).unwrap();
@@ -236,10 +243,7 @@ fn do_run_qemu(arch: &str, elf: &Path, bin: &Path, disk: &Path) {
     // Attach the disk image as a VirtIO PCI block device.
     args.extend([
         "-drive".into(),
-        format!(
-            "file={},format=raw,if=none,id=disk0",
-            disk.display()
-        ),
+        format!("file={},format=raw,if=none,id=disk0", disk.display()),
         "-device".into(),
         "virtio-blk-pci,drive=disk0".into(),
     ]);
